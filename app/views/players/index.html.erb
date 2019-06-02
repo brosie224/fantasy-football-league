@@ -1,0 +1,12 @@
+<h2>Add Free Agents</h2>
+<%= form_tag("/players", method: "post") do %>
+    <ul>
+        <% @players.order(:last_name, :first_name).sort_position.each do |player| %>
+            <li>
+                <%= check_box_tag "free_agents[]", player.id %>
+                <%= player.position + " " + player.last_name + ", " + player.first_name %>
+            </li>
+        <% end %>
+    </ul>
+    <%= submit_tag "Add player(s) to #{@team.name}" if @team %>
+<% end %>

@@ -1,0 +1,8 @@
+<%= form_for team do |f| %>
+  <%= f.text_field :city, placeholder: "City", required: true %><br>
+  <%= f.text_field :name, placeholder: "Name", required: true %><br>
+  <%= f.select :conference, [["AFC","AFC"],["NFC","NFC"]], {include_blank: "Conference"}, required: true %><br>
+  <%= f.select :division, [["East","East"],["North","North"],["South","South"],["West","West"]], {include_blank: "Division"}, required: true %><br><br>
+  <%= f.hidden_field :user_id %>
+  <%= f.submit %>
+<% end %>
