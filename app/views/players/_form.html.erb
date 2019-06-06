@@ -3,6 +3,6 @@
   <%= f.text_field :last_name, placeholder: "Last Name", required: true %><br>
   <%= f.select :position, [["QB","QB"],["RB","RB"],["WR","WR"],["TE","TE"],["K","K"],["DT","DT"]], {include_blank: "Position"}, required: true %><br>
   <%= f.number_field :espn_id, placeholder: "ESPN ID" %><br>
-  <%= f.collection_select :team_id, Team.all, :id, :full_name, {include_blank: "Team"} %><br>
+  <%= f.collection_select :team_id, Team.all.order(:city), :id, :full_name %><br>
   <%= f.submit %>
 <% end %>

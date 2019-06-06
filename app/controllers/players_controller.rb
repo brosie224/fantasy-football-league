@@ -5,10 +5,7 @@ class PlayersController < ApplicationController
     before_action :admin_only, except: [:index, :add_to_team]
 
     def index
-
-        # change 'all' to 'free_agents'
-
-        @players = Player.all.order(:last_name, :first_name).sort_position
+        @players = Player.free_agents.order(:last_name, :first_name).sort_position
     end
 
     def add_to_team

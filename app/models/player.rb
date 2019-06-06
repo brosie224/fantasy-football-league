@@ -1,10 +1,10 @@
 class Player < ApplicationRecord
     belongs_to :team
     has_one :user, through: :team
-
+    
     validates_uniqueness_of :espn_id, if: :not_defense
 
-    scope :free_agents, -> { where(team_id: nil) }
+    scope :free_agents, -> { where(team_id: 0) }
 
     def full_name
         self.first_name + " " + self.last_name

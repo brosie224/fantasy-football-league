@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :players, except: [:index, :show]
 
   get '/free-agents', to: 'players#index'
-  post '/players', to: 'players#add_to_team'
+  post '/add-players', to: 'players#add_to_team'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

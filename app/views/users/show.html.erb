@@ -5,7 +5,11 @@
     <h2 style="display:inline;color:navy"><%= @team.city + " " + @team.name %></h2>
     <p style="display:inline;font-size:12px"><%= link_to "(Edit Team)", edit_team_path(@team) if @user == current_user %></p><br>
     <% @players.sort_position.each do |player| %>
-        <%= player.position %> <%= link_to player.first_name + " " + player.last_name, player.espn_page, target: :blank %><br>
+        <% if player.not_defense %>
+            <%= player.position %> <%= link_to "#{player.first_name} #{player.last_name}", player.espn_page, target: :blank %><br>
+        <% else %>
+            <%= "#{player.position} #{player.first_name} #{player.last_name}" %><br>
+        <% end %>
     <% end %>
 <% else %>
     <h2><%= link_to "Create Team", new_user_team_path(@user) %></h2>
