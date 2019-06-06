@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     resources :teams, except: [:index]
   end
 
-  resources :teams
+  resources :teams, except: [:show]
 
   # resources :players
+
   get '/players', to: 'players#index'
   post '/players', to: 'players#add_to_team'
 

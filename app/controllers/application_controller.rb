@@ -14,4 +14,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def admin_only
+      if current_user.email != "barosengarten@gmail.com"
+        redirect_to user_path(@current_user)
+        flash[:notice] = "You must be an admin to perform this action."
+      end
+    end
+
 end

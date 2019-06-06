@@ -1,10 +1,11 @@
 class TeamsController < ApplicationController
-    before_action :require_login, except: [:index]
     before_action :find_team, only: [:edit, :update, :destroy]
     before_action :authenticate_team, only: [:edit, :update, :destroy]
+    before_action :admin_only, only: [:index]
 
     def index
         @teams = Team.all
+        # can DRY view?
     end
 
     def new

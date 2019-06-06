@@ -1,2 +1,2 @@
-module TeamsHelper
+module TeamsHelper   
 end

@@ -1,18 +1,43 @@
-<h1>AFC</h1>
-<h3>East</h3>
+<h1 style="display:inline;color:navy">AFC</h1><br>
 
+<h3 style="display:inline;color:navy">East</h3><br>
+<% Team.by_division("AFC", "East").each do |team| %>
+    <%= link_to team.full_name, user_path(team.user_id) %><br>
+<% end %>
 
-<h3>North</h3>
+<br><h3 style="display:inline;color:navy">North</h3><br>
+<% Team.by_division("AFC", "North").each do |team| %>
+    <%= link_to team.full_name, user_path(team.user_id) %><br>
+<% end %>
 
-<h3>South</h3>
+<br><h3 style="display:inline;color:navy">South</h3><br>
+<% Team.by_division("AFC", "South").each do |team| %>
+    <%= link_to team.full_name, user_path(team.user_id) %><br>
+<% end %>
 
-<h3>West</h3>
+<br><h3 style="display:inline;color:navy">West</h3><br>
+<% Team.by_division("AFC", "West").each do |team| %>
+    <%= link_to team.full_name, user_path(team.user_id) %><br>
+<% end %>
 
-<h1>NFC</h1>
-<h3>East</h3>
+<br><h1 style="display:inline;color:navy">NFC</h1><br>
 
-<h3>North</h3>
+<h3 style="display:inline;color:navy">East</h3><br>
+<% Team.by_division("NFC", "East").each do |team| %>
+    <%= link_to team.full_name, user_path(team.user_id) %><br>
+<% end %>
 
-<h3>South</h3>
+<br><h3 style="display:inline;color:navy">North</h3><br>
+<% Team.by_division("NFC", "North").each do |team| %>
+    <%= link_to team.full_name, user_path(team.user_id) %><br>
+<% end %>
 
-<h3>West</h3>
+<br><h3 style="display:inline;color:navy">South</h3><br>
+<% Team.by_division("NFC", "South").each do |team| %>
+    <%= link_to team.full_name, user_path(team.user_id) %><br>
+<% end %>
+
+<br><h3 style="display:inline;color:navy">West</h3><br>
+<% Team.by_division("NFC", "West").each do |team| %>
+    <%= link_to team.full_name, user_path(team.user_id) %><br>
+<% end %>
