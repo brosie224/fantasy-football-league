@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
   resources :teams, except: [:show]
 
-  # resources :players
+  resources :players, except: [:index, :show]
 
-  get '/players', to: 'players#index'
+  get '/free-agents', to: 'players#index'
   post '/players', to: 'players#add_to_team'
 
   get '/login' => 'sessions#new'

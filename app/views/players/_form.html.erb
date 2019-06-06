@@ -1,0 +1,8 @@
+<%= form_for player do |f| %>
+  <%= f.text_field :first_name, placeholder: "First Name", required: true %><br>
+  <%= f.text_field :last_name, placeholder: "Last Name", required: true %><br>
+  <%= f.select :position, [["QB","QB"],["RB","RB"],["WR","WR"],["TE","TE"],["K","K"],["DT","DT"]], {include_blank: "Position"}, required: true %><br>
+  <%= f.number_field :espn_id, placeholder: "ESPN ID" %><br>
+  <%= f.collection_select :team_id, Team.all, :id, :full_name, {include_blank: "Team"} %><br>
+  <%= f.submit %>
+<% end %>

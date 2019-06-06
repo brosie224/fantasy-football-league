@@ -30,6 +30,7 @@ class TeamsController < ApplicationController
       if @team.valid?
         redirect_to user_path(current_user)
       else
+        flash[:notice] = @team.errors.full_messages
         render :edit
       end
     end
