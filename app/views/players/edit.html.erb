@@ -1,2 +1,4 @@
 <h1>Edit Player</h1>
 <%= render partial: 'form', locals: {player: @player} %>
+<br><br>
+<%= link_to "Delete Player", player_path(@player), method: "delete", data: { confirm: 'Are you certain you want to delete this player' } %>

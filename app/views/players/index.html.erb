@@ -8,4 +8,7 @@
     <%= submit_tag "Add player(s) to #{@team.name}" if @team %>
 <% end %>
 <br>
-<%= link_to "Create Player", new_player_path if current_user.email == "barosengarten@gmail.com"  %>
+<% if current_user.email == "barosengarten@gmail.com" %>
+        <%= link_to "Create Player", new_player_path %><br><br>
+        <%= link_to "Edit Player", admin_all_players_path %>
+<% end %>

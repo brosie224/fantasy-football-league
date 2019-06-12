@@ -34,6 +34,10 @@ class PlayersController < ApplicationController
         end
     end
 
+    def all_players
+      @players = Player.all.order(:last_name, :first_name).sort_position
+    end
+
     def edit
     end
 
@@ -50,7 +54,7 @@ class PlayersController < ApplicationController
 
     def destroy
         @player.destroy
-        redirect_to players_path
+        redirect_to admin_all_players_path
     end
 
     private

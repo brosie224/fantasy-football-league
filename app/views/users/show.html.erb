@@ -6,7 +6,8 @@
     <p style="display:inline;font-size:12px"><%= link_to "(Edit Team)", edit_team_path(@team) if @user == current_user %></p><br>
     <% @players.sort_position.each do |player| %>
         <% if player.not_defense %>
-            <%= player.position %> <%= link_to "#{player.first_name} #{player.last_name}", player.espn_page, target: :blank %><br>
+            <%= player.position %> 
+            <%= link_to "#{player.first_name} #{player.last_name}", player.espn_page, target: :blank %><br>
         <% else %>
             <%= "#{player.position} #{player.first_name} #{player.last_name}" %><br>
         <% end %>
@@ -16,6 +17,6 @@
 <% end %>
 <br><br>
 <% if @user == current_user %>
-    <%= link_to "Add Players", free_agents_path %><br><br><br>
+    <%= link_to "Add Players", free_agents_path if @team %><br><br><br>
     <%= link_to "Delete Team", team_path(@team), method: "delete", data: { confirm: 'Are you certain you want to delete this team?' } if @team %>
 <% end %>
