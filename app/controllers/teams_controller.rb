@@ -35,6 +35,10 @@ class TeamsController < ApplicationController
     end
 
     def destroy
+      @team.players.each do |player|
+        player.team_id = 0
+        player.save
+      end
       @team.destroy
       redirect_to user_path(current_user)
     end
