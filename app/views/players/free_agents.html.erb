@@ -1,0 +1,10 @@
+<h2>Add Free Agents</h2>
+<%= form_tag("/add-players", method: "post") do %>
+        <% @players.each do |player| %>
+                <%= check_box_tag "free_agents[]", player.id %>
+                <%= player.position %> 
+                <%= link_to player.last_name + ", " + player.first_name, player.espn_page, target: :blank %><br>
+        <% end %>
+        <br>
+    <%= submit_tag "Add player(s) to #{@team.name}" if @team %>
+<% end %>

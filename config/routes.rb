@@ -10,12 +10,13 @@ Rails.application.routes.draw do
 
   resources :teams, except: [:show]
 
+  get '/players' => 'players#index'
+
   scope '/admin' do
     resources :players, except: [:index, :show]
   end
 
-  get '/admin/all-players' => 'players#all_players'
-  get '/free-agents' => 'players#index'
+  get '/free-agents' => 'players#free_agents'
   post '/add-players' => 'players#add_to_team'
 
   get '/login' => 'sessions#new'

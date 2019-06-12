@@ -1,10 +1,14 @@
 class PlayersController < ApplicationController
     before_action :require_login
     before_action :find_player, only: [:edit, :update, :destroy]
-    before_action :find_team, only: [:index, :add_to_team]
-    before_action :admin_only, except: [:index, :add_to_team]
+    before_action :find_team, only: [:free_agents, :add_to_team]
+    before_action :admin_only, except: [:index, :free_agents, :add_to_team]
 
     def index
+      @players = Player.all.order(:last_name, :first_name).sort_position
+    end
+
+    def free_agents
         @players = Player.free_agents.order(:last_name, :first_name).sort_position
     end
 
@@ -34,10 +38,6 @@ class PlayersController < ApplicationController
         end
     end
 
-    def all_players
-      @players = Player.all.order(:last_name, :first_name).sort_position
-    end
-
     def edit
     end
 
@@ -54,7 +54,7 @@ class PlayersController < ApplicationController
 
     def destroy
         @player.destroy
-        redirect_to admin_all_players_path
+        redirect_to players_path
     end
 
     private
