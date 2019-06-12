@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :teams, except: [:show]
 
   get '/players' => 'players#index'
+  post '/players' => 'players#create'
 
   scope '/admin' do
     resources :players, except: [:index, :show]
