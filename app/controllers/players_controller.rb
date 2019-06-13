@@ -33,7 +33,7 @@ class PlayersController < ApplicationController
           flash[:notice] = "#{@player.position} #{@player.full_name} has been created."
           redirect_to new_player_path
         else
-          flash[:notice] = @player.errors.full_messages
+          flash[:alert] = @player.errors.full_messages
           render :new
         end
     end
@@ -47,7 +47,7 @@ class PlayersController < ApplicationController
           flash[:notice] = "#{@player.position} #{@player.full_name} has been updated."
           redirect_to players_path
         else
-          flash[:notice] = @player.errors.full_messages
+          flash[:alert] = @player.errors.full_messages
           render :edit
         end
     end

@@ -5,7 +5,8 @@
          <%= link_to player.last_name + ", " + player.first_name, edit_player_path(player) if current_user.email == "barosengarten@gmail.com" %>
          <%= link_to player.last_name + ", " + player.first_name, player.espn_page, target: :blank if current_user.email != "barosengarten@gmail.com" %>
       <% else %>
-         <%= player.first_name + " " + player.last_name %>
+         <%= link_to player.first_name + " " + player.last_name, edit_player_path(player) if current_user.email == "barosengarten@gmail.com" %>
+         <%= player.first_name + " " + player.last_name if current_user.email != "barosengarten@gmail.com" %>
       <% end %>
         <%= " - " %>
         <% if player.team_id == 0 %>

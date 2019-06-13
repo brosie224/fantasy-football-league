@@ -23,8 +23,11 @@
         <% end %>
      </nav>
     <br>
-    <% if flash[:notice] %>
-      <strong><font style="color:red"><%= flash[:notice] %></font></strong><br><br>
+    <% if flash[:alert] %>
+      <strong><font style="color:red"><%= flash[:alert] %></font></strong><br><br>
+    <% end %>
+      <% if flash[:notice] %>
+      <strong><font style="color:green"><%= flash[:notice] %></font></strong><br><br>
     <% end %>
 
     <%= yield %>

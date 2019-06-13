@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
         if @team.valid?
           redirect_to user_path(id: params[:team][:user_id])
         else
-          flash[:notice] = @team.errors.full_messages
+          flash[:alert] = @team.errors.full_messages
           render :new
         end
     end
@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
       if @team.valid?
         redirect_to user_path(current_user)
       else
-        flash[:notice] = @team.errors.full_messages
+        flash[:alert] = @team.errors.full_messages
         render :edit
       end
     end
@@ -51,7 +51,7 @@ class TeamsController < ApplicationController
 
     def authenticate_team
       if @team.user_id != current_user.id
-        flash[:notice] = "Users can only edit their own team."
+        flash[:alert = "Users can only edit their own team."
         redirect_to user_path(current_user)
       end 
     end

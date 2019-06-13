@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash[:notice] = @user.errors.full_messages
+      flash[:alert] = @user.errors.full_messages
       render :new
     end
   end
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
   def authenticate_user
     if @user.id != current_user.id
-      flash[:notice] = "Users can only edit their own profile."
+      flash[:alert] = "Users can only edit their own profile."
       redirect_to user_path(current_user)
     end 
   end

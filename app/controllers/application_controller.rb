@@ -10,14 +10,14 @@ class ApplicationController < ActionController::Base
     def require_login
       if !current_user
         redirect_to login_path
-        flash[:notice] = "You must be logged in to perform this action."
+        flash[:alert] = "You must be logged in to perform this action."
       end
     end
 
     def admin_only
       if current_user.email != "barosengarten@gmail.com"
         redirect_to user_path(@current_user)
-        flash[:notice] = "You must be an admin to perform this action."
+        flash[:alert] = "You must be an admin to perform this action."
       end
     end
 

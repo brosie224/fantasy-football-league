@@ -1,4 +1,4 @@
-<h2>Add Free Agents</h2>
+<h2>Free Agents</h2>
 <%= form_tag("/add-players", method: "post") do %>
         <% @players.each do |player| %>
                 <%= check_box_tag "free_agents[]", player.id %>
