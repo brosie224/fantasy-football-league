@@ -58,7 +58,10 @@ class PlayersController < ApplicationController
 
     def destroy
         @player.destroy
-        redirect_to players_path
+        respond_to do |f|
+          f.html {redirect_to players_path}
+          f.json {head :no_content}
+        end
     end
 
     private

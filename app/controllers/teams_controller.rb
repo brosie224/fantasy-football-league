@@ -4,7 +4,10 @@ class TeamsController < ApplicationController
 
     def index
         @teams = Team.all
-        # can DRY view?
+        respond_to do |f|
+          f.html {render :index}
+          f.json {render json: @teams}
+        end
     end
 
     def new
