@@ -10,4 +10,8 @@ class Team < ApplicationRecord
         self.all.where(conference: conf, division: div)
     end
 
+    def self.exclude_fa
+        self.all.where.not(id: 0)
+    end
+
 end

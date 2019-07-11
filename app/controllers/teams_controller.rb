@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
         @teams = Team.all
         respond_to do |f|
           f.html {render :index}
-          f.json {render json: @teams}
+          f.json {render json: Team.exclude_fa}
         end
     end
 
