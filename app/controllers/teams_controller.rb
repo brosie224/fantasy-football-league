@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
     before_action :authenticate_team, only: [:edit, :update, :destroy]
 
     def index
-        @teams = Team.all
+        @teams = Team.all.order(:city)
         respond_to do |f|
           f.html {render :index}
           f.json {render json: Team.exclude_fa}

@@ -1,8 +1,8 @@
 class PlayersController < ApplicationController
     before_action :require_login
-    before_action :find_player, only: [:edit, :update, :destroy]
+    before_action :find_player, only: [:show, :edit, :update, :destroy]
     before_action :find_team, only: [:free_agents, :add_to_team]
-    before_action :admin_only, except: [:index, :free_agents, :add_to_team]
+    before_action :admin_only, except: [:index, :free_agents, :add_to_team, :show]
 
     def index
       @players = Player.all.order(:last_name, :first_name).sort_position
@@ -25,7 +25,14 @@ class PlayersController < ApplicationController
         redirect_to user_path(current_user)
     end
 
-    # Admin Only
+    def show
+      respond_to do |f|
+        f.html {render :show}
+        f.json {render json: @player}
+      end
+    end
+
+    # -- Admin Only --
     
     def new
         @player = Player.new
@@ -59,7 +66,7 @@ class PlayersController < ApplicationController
     def destroy
         @player.destroy
         respond_to do |f|
-          f.html {redirect_to players_path}
+          f.html {redirect_to players_path, notice: "#{@player.position} #{@player.full_name} has been deleted."}
           f.json {head :no_content}
         end
     end

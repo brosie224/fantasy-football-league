@@ -3,7 +3,7 @@
    <%= player.position %>
       <% if player.not_defense %>
          <%= link_to player.last_name + ", " + player.first_name, edit_player_path(player) if current_user.email == "barosengarten@gmail.com" %>
-         <%= link_to player.last_name + ", " + player.first_name, player.espn_page, target: :blank if current_user.email != "barosengarten@gmail.com" %>
+         <%= link_to player.last_name + ", " + player.first_name, player_path(player) if current_user.email != "barosengarten@gmail.com" %>
       <% else %>
          <%= link_to player.first_name + " " + player.last_name, edit_player_path(player) if current_user.email == "barosengarten@gmail.com" %>
          <%= player.first_name + " " + player.last_name if current_user.email != "barosengarten@gmail.com" %>

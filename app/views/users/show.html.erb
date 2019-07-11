@@ -1,6 +1,8 @@
-<h1 style="display:inline;color:navy"><%= @user.name %>'s Team</h1>
+<h1 style="display:inline;color:navy"><%= @user.name %>'s Page</h1>
 <p style="display:inline;font-size:12px"><%= link_to "(Edit Profile)", edit_user_path(@user) if @user == current_user %></p><br>
 <p style="display:inline"><%= mail_to @user.email %></p><br><br><br>
+
+<div id="team-info">
 <% if @team %>
     <h2 style="display:inline;color:navy"><%= @team.city + " " + @team.name %></h2>
     <p style="display:inline;font-size:12px"><%= link_to "(Edit Team)", edit_team_path(@team) if @user == current_user %></p><br>
@@ -15,6 +17,8 @@
 <% else %>
     <h2><%= link_to "Create Team", new_user_team_path(@user) %></h2>
 <% end %>
+</div>
+
 <br><br>
 <% if @user == current_user %>
     <%= link_to "Add Players", free_agents_path if @team %><br><br><br>
