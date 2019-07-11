@@ -51,7 +51,7 @@ class TeamsController < ApplicationController
 
     def authenticate_team
       if @team.user_id != current_user.id
-        flash[:alert = "Users can only edit their own team."
+        flash[:alert] = "Users can only edit their own team."
         redirect_to user_path(current_user)
       end 
     end
