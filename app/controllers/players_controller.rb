@@ -6,6 +6,10 @@ class PlayersController < ApplicationController
 
     def index
       @players = Player.all.order(:last_name, :first_name).sort_position
+      respond_to do |f|
+        f.html {render :index}
+        f.json {render json: @players}
+      end
     end
 
     def free_agents
