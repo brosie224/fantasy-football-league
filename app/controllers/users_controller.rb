@@ -24,6 +24,10 @@ class UsersController < ApplicationController
       @team = @user.team
       @players = @team.players if @team.players
     end
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @user}
+    end
   end
 
   def edit

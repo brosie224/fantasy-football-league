@@ -4,20 +4,4 @@
     <p id="player-espn"><%= link_to "ESPN Player Page", @player.espn_page, target: :blank %></p>
 </div>
 <br>
-<button class="js-next" data-id="<%=@player.id%>">Next Player</button>
-
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-next").on("click", function() {
-    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/players/" + nextId + ".json", function(data) {
-      let player = data;
-      $("#player-name-position").html(player["full_name"] + " - " + player["position"]);
-      $("#player-team").html(`<a href="/users/${player["user"]["id"]}">${player["team"]["full_name"]}</a>`)
-      $("#player-espn").html(`<a href="${player["espn_page"]}" target="_blank">ESPN Player Page</a>`)
-
-      $(".js-next").attr("data-id", player["id"]);
-    });
-  });
-});
-</script>
+<button id="js-next-player" data-id="<%=@player.id%>">Next Player</button>
