@@ -5,25 +5,24 @@
       <% @players.each do |player| %>
          <tr>
             <td><%= player.position %></td>
-               <% if player.not_defense %>
-                  <td style="padding: 0 10px 0 0"><%= link_to player.last_name + ", " + player.first_name, edit_player_path(player) if current_user.email == "barosengarten@gmail.com" %></td>
-                  <td style="padding: 0 10px 0 0"><%= link_to player.last_name + ", " + player.first_name, player_path(player) if current_user.email != "barosengarten@gmail.com" %></td>
+            <% if player.not_defense %>
+               <td style="padding: 0 10px 0 0"><%= link_to player.last_name + ", " + player.first_name, edit_player_path(player) if current_user.email == "barosengarten@gmail.com" %></td>
+               <td style="padding: 0 10px 0 0"><%= link_to player.last_name + ", " + player.first_name, player_path(player) if current_user.email != "barosengarten@gmail.com" %></td>
+            <% else %>
+               <td style="padding: 0 10px 0 0"><%= link_to player.first_name + " " + player.last_name, edit_player_path(player) if current_user.email == "barosengarten@gmail.com" %></td>
+               <td style="padding: 0 10px 0 0"><%= player.first_name + " " + player.last_name if current_user.email != "barosengarten@gmail.com" %></td>
+            <% end %>
+            <% if player.team_id == 0 %>
+                  <td style="padding: 0 10px 0 0"><%= link_to "Free Agent", free_agents_path %></td>
                <% else %>
-                  <td style="padding: 0 10px 0 0"><%= link_to player.first_name + " " + player.last_name, edit_player_path(player) if current_user.email == "barosengarten@gmail.com" %></td>
-                  <td style="padding: 0 10px 0 0"><%= player.first_name + " " + player.last_name if current_user.email != "barosengarten@gmail.com" %></td>
-               <% end %>
-               <% if player.team_id == 0 %>
-                     <td><%= link_to "Free Agent", free_agents_path %></td>
-                  <% else %>
-                     <td><%= link_to player.team.full_name, user_path(player.user) %></td>
-               <% end %>
+                  <td style="padding: 0 10px 0 0"><%= link_to player.team.full_name, user_path(player.user) %></td>
+            <% end %>
+            <td><a style="font-size:11px" href="#" class="js-show-player" data-id="<%=player.id%>">View Player</a></td>
          </tr>
       <% end %>
    </tbody>
 </table>
 <br>
-<div id="player-page">
-<h1>huh</h1>
-</div>
+<div id="player-info"></div>
 <br><br>
 <%= link_to "Create Player", new_player_path if current_user.email == "barosengarten@gmail.com" %>

@@ -16,6 +16,8 @@ $(function nextPlayer() {
     });
 });
 
+
+
 class Player {
     constructor(obj) {
         this.id = obj.id
