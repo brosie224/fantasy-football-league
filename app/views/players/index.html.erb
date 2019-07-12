@@ -19,15 +19,17 @@
             <% end %>
             <% if player.not_defense %>
                <td><a style="padding: 0 10px 0 0; font-size:11px" href="#" class="js-view-player" data-id="<%=player.id%>">View Player</a></td>
+            <% else %>
+               <td></td>
             <% end %>
             <% if player.team_id != 0 %>
-               <td><a style="font-size:11px" href="#" class="js-view-team" data-id="<%=player.team_id%>">View Tean</a></td>
+               <td><a style="font-size:11px" href="#" class="js-view-team" data-id="<%=player.team.user_id%>">View Team</a></td>
             <% end %>
          </tr>
       <% end %>
    </tbody>
 </table>
-<br>
+<br><br>
 <div id="player-team-info"></div>
 <br><br>
 <%= link_to "Create Player", new_player_path if current_user.email == "barosengarten@gmail.com" %>

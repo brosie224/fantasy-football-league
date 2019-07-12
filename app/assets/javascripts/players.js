@@ -1,5 +1,5 @@
 $(function(){
-    console.log("JS is running!")
+    console.log("JS is running in players!")
 })
 
 $(function nextPlayer() {
@@ -53,7 +53,7 @@ Player.prototype.teamName = function() {
 Player.prototype.postHTML = function() {
     return `
         <div>
-            <h2>${this.fullName()}</h2>
+            <h2 style="display:inline">${this.fullName()}</h2>
             <p>Position: ${this.position}</p>
             <p>${this.teamName()}</p>
             <a href="${this.espnPage}" target="_blank">ESPN Player Page</a>
