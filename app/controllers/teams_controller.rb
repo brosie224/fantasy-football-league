@@ -17,7 +17,8 @@ class TeamsController < ApplicationController
     def create
         @team = Team.create(team_params)
         if @team.valid?
-          redirect_to user_path(id: params[:team][:user_id])
+          render json: @team, status: 201
+          # redirect_to user_path(id: params[:team][:user_id])
         else
           flash[:alert] = @team.errors.full_messages
           render :new

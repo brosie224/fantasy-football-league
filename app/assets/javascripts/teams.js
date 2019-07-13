@@ -1,18 +1,26 @@
-$(function(){
-    console.log("JS is running in teams!")
-})
-
 $(function viewTeam() {
     $(".js-view-team").on("click", function(e) {
         e.preventDefault();
         let thisId = $(this).data("id");
         $.get("/users/" + thisId + ".json", function(data) {
-            let clickedTeam = new Team (data);
-            let postTeam = clickedTeam.postHTML();
+            let clickedTeam = new Team(data);
+            let postTeam = clickedTeam.viewTeam();
             $("#player-team-info").html(postTeam);
         })
     })
 })
+
+$(function () {
+    $('form#new_team').submit(function(e) {
+      e.preventDefault();
+      let values = $(this).serialize();
+      $.post('/teams', values)
+        .done(function(data) {
+            $("#new-team-created").html(`${data["full_name"]} created successfully!<br><br>
+            Start <a href="/free-agents">adding players</a> now!`);
+      });
+    });
+  });
 
 class Team {
     constructor(obj) {
@@ -29,7 +37,7 @@ Team.prototype.fullDivision = function() {
     return this.conference + " " + this.division;
 }
 
-Team.prototype.postHTML = function() {
+Team.prototype.viewTeam = function() {
     let players = this.players.map(player => {
         return player.position + " " + player.full_name + "<br>"
     }).join('')

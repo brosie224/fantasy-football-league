@@ -1,7 +1,3 @@
-$(function(){
-    console.log("JS is running in players!")
-})
-
 $(function nextPlayer() {
     $("#js-next-player").on("click", function(e) {
         e.preventDefault();
