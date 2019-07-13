@@ -4,6 +4,14 @@ class UsersController < ApplicationController
   before_action :authenticate_user, only: [:edit, :update]
   
 
+  def index
+    @users = User.all
+    respond_to do |f|
+      f.html
+      f.json {render json: @users}
+    end
+  end
+
   def new
     @user = User.new
   end

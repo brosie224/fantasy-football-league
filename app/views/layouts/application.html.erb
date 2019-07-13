@@ -16,6 +16,7 @@
           <%= link_to "Teams", teams_path %>&nbsp
           <%= link_to "Free Agents", free_agents_path %>&nbsp
           <%= link_to "All Players", players_path %>&nbsp
+          <%= link_to "All Users", users_path, id: "view-users" %>&nbsp
           <%= link_to "Log Out", logout_path %>
         <% else %>
           <%= link_to "Sign Up", new_user_path %>&nbsp
@@ -30,6 +31,8 @@
       <font style="color:green"><%= flash[:notice] %></font><br><br>
     <% end %>
 
-    <%= yield %>
+    <div id="page-content-container">
+      <%= yield %>
+    </div>
   </body>
 </html>

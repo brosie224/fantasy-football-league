@@ -48,10 +48,8 @@ Team.prototype.viewTeam = function() {
     }).join('')
 
     return `
-        <div>
             <h2 style="display:inline">${this.name}</h2><br>
             <p style="display:inline">${this.fullDivision()}</p>
             <p>${players}</p>
-        </div>
     `
 }
