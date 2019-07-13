@@ -1,9 +1,13 @@
-$(function nextPlayer() {
+$(() => {
+    viewPlayer(), nextPlayer()
+})
+
+const nextPlayer = () => {
     $("#js-next-player").on("click", function(e) {
         e.preventDefault();
         let nextId = parseInt($("#js-next-player").attr("data-id")) + 1;
         // let nextId = $(this).data("id") + 1; -- doesn't work
-        $.get("/players/" + nextId + ".json", function(data) {
+        $.get("/players/" + nextId + ".json", data => {
             let player = data;
             $("#player-name-position").html(player["full_name"] + " - " + player["position"]);
             $("#player-team").html(`<a href="/users/${player["user"]["id"]}">${player["team"]["full_name"]}</a>`);
@@ -11,21 +15,21 @@ $(function nextPlayer() {
             $("#js-next-player").attr("data-id", player["id"]);
         });
     });
-});
+};
 
-$(function viewPlayer() {
+const viewPlayer = () => {
     $(".js-view-player").on("click", function(e) {
         e.preventDefault();
         // let thisId = parseInt($(".js-view-player").attr("data-id")) -- doesn't work
         let thisId = $(this).data("id");
-        $.get("/players/" + thisId + ".json", function(data) {
+        $.get("/players/" + thisId + ".json", data => {
             let clickedPlayer = new Player(data);
             let postPlayer = clickedPlayer.postHTML();
             $("#player-team-info").html(postPlayer);
             // document.getElementById('player-team-info').innerHTML = postPlayer;
         })
     })
-})
+}
 
 class Player {
     constructor(obj) {
