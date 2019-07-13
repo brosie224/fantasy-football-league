@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       @players = @team.players if @team.players
     end
     respond_to do |f|
-      f.html {render :show}
+      f.html
       f.json {render json: @user}
     end
   end

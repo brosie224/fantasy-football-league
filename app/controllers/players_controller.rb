@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
     def index
       @players = Player.all.order(:last_name, :first_name).sort_position
       respond_to do |f|
-        f.html {render :index}
+        f.html
         f.json {render json: Player.all.order(:last_name, :first_name)}
       end
     end
@@ -27,7 +27,7 @@ class PlayersController < ApplicationController
 
     def show
       respond_to do |f|
-        f.html {render :show}
+        f.html
         f.json {render json: @player}
       end
     end

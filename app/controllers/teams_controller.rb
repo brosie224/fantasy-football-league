@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
     def index
         @teams = Team.all.order(:city)
         respond_to do |f|
-          f.html {render :index}
+          f.html
           f.json {render json: Team.exclude_fa}
         end
     end
