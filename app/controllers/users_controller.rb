@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   
 
   def index
-    @users = User.all
+    @users = User.exclude_fa
     respond_to do |f|
       f.html
       f.json {render json: @users}

@@ -13,4 +13,8 @@ class User < ApplicationRecord
         end
     end
 
+    def self.exclude_fa
+        self.all.where.not(id: 7)
+    end
+
 end
