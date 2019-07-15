@@ -1,8 +1,8 @@
 class PlayersController < ApplicationController
     before_action :require_login
-    before_action :find_player, only: [:show, :next, :edit, :update, :destroy]
+    before_action :find_player, only: [:show, :previous, :next, :edit, :update, :destroy]
     before_action :find_team, only: [:free_agents, :add_to_team]
-    before_action :admin_only, except: [:index, :free_agents, :add_to_team, :show, :next]
+    before_action :admin_only, except: [:index, :free_agents, :add_to_team, :show, :previous, :next]
 
     def index
       @players = Player.all.order(:last_name, :first_name).sort_position
@@ -26,10 +26,17 @@ class PlayersController < ApplicationController
     end
 
     def show
+      @first_player = Player.first
+      @last_player = Player.last
       respond_to do |f|
         f.html
         f.json {render json: @player}
       end
+    end
+
+    def previous
+    @previous_player = @player.previous
+    render json: @previous_player
     end
 
     def next

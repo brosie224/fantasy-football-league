@@ -1,31 +1,33 @@
 $(() => {
-    viewPlayer(), nextPlayer()
+    viewPlayer(), prevPlayer(), nextPlayer()
 })
 
-// const nextPlayer = () => {
-//     $("#js-next-player").on("click", function(e) {
-//         e.preventDefault();
-//         let nextId = parseInt($("#js-next-player").attr("data-id")) + 1;
-//         // let nextId = $(this).data("id") + 1;
-//         history.pushState(null, null, nextId)
-//         $.get("/players/" + nextId + ".json", data => {
-//             let clickedPlayer = new Player(data);
-//             let postPlayer = clickedPlayer.postHtml();
-//             $("#player-page").html(postPlayer);
-//             $("#js-next-player").attr("data-id", clickedPlayer.id);
-//         });
-//     });
-// };
-
-const nextPlayer = () => {
-    $("#js-next-player").on("click", function(e) {
+const prevPlayer = () => {
+    $("#js-prev-player").on("click", e => {
         e.preventDefault();
-        let thisId = parseInt($("#js-next-player").attr("data-id"));
-        // let thisId = $(this).data("id");
-        $.get("/players/" + thisId + "/next.json", data => {
+        let id = parseInt($("#js-prev-player").attr("data-id"));
+        // let id = $(this).data("id");
+        $.get("/players/" + id + "/previous.json", data => {
             let clickedPlayer = new Player(data);
             let postPlayer = clickedPlayer.postHtml();
             $("#player-page").html(postPlayer);
+            $("#js-prev-player").attr("data-id", clickedPlayer.id);$("#js-prev-player").attr("data-id", clickedPlayer.id);
+            $("#js-next-player").attr("data-id", clickedPlayer.id);
+            history.pushState(null, null, clickedPlayer.id)
+        });
+    });
+};
+
+const nextPlayer = () => {
+    $("#js-next-player").on("click", e => {
+        e.preventDefault();
+        let id = parseInt($("#js-next-player").attr("data-id"));
+        // let id = $(this).data("id");
+        $.get("/players/" + id + "/next.json", data => {
+            let clickedPlayer = new Player(data);
+            let postPlayer = clickedPlayer.postHtml();
+            $("#player-page").html(postPlayer);
+            $("#js-prev-player").attr("data-id", clickedPlayer.id);
             $("#js-next-player").attr("data-id", clickedPlayer.id);
             history.pushState(null, null, clickedPlayer.id)
         });
@@ -35,8 +37,8 @@ const nextPlayer = () => {
 const viewPlayer = () => {
     $(".js-view-player").on("click", function(e) {
         e.preventDefault();
-        let thisId = $(this).data("id");
-        $.get("/players/" + thisId + ".json", data => {
+        let id = $(this).data("id");
+        $.get("/players/" + id + ".json", data => {
             let clickedPlayer = new Player(data);
             let postPlayer = clickedPlayer.postHtml();
             $("#player-team-info").html(postPlayer);
