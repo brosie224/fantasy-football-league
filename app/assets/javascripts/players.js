@@ -2,18 +2,33 @@ $(() => {
     viewPlayer(), nextPlayer()
 })
 
+// const nextPlayer = () => {
+//     $("#js-next-player").on("click", e => {
+//         e.preventDefault();
+//         let nextId = parseInt($("#js-next-player").attr("data-id")) + 1;
+//         // let nextId = $(this).data("id") + 1; -- doesn't work
+//         history.pushState(null, null, nextId)
+//         $.get("/players/" + nextId + ".json", data => {
+//             let player = data;
+//             $("#player-name-position").html(player["full_name"] + " - " + player["position"]);
+//             $("#player-team").html(`<a href="/users/${player["user"]["id"]}">${player["team"]["full_name"]}</a>`);
+//             $("#player-espn").html(`<a href="${player["espn_page"]}" target="_blank">ESPN Player Page</a>`);
+//             $("#js-next-player").attr("data-id", player["id"]);
+//         });
+//     });
+// };
+
 const nextPlayer = () => {
-    $("#js-next-player").on("click", e => {
+    $("#js-next-player").on("click", function(e) {
         e.preventDefault();
         let nextId = parseInt($("#js-next-player").attr("data-id")) + 1;
-        // let nextId = $(this).data("id") + 1; -- doesn't work
+        // let nextId = $(this).data("id") + 1;
         history.pushState(null, null, nextId)
         $.get("/players/" + nextId + ".json", data => {
-            let player = data;
-            $("#player-name-position").html(player["full_name"] + " - " + player["position"]);
-            $("#player-team").html(`<a href="/users/${player["user"]["id"]}">${player["team"]["full_name"]}</a>`);
-            $("#player-espn").html(`<a href="${player["espn_page"]}" target="_blank">ESPN Player Page</a>`);
-            $("#js-next-player").attr("data-id", player["id"]);
+            let clickedPlayer = new Player(data);
+            let postPlayer = clickedPlayer.postHtml();
+            $("#player-page").html(postPlayer);
+            $("#js-next-player").attr("data-id", clickedPlayer.id);
         });
     });
 };
@@ -21,7 +36,6 @@ const nextPlayer = () => {
 const viewPlayer = () => {
     $(".js-view-player").on("click", function(e) {
         e.preventDefault();
-        // let thisId = parseInt($(".js-view-player").attr("data-id")) -- doesn't work
         let thisId = $(this).data("id");
         $.get("/players/" + thisId + ".json", data => {
             let clickedPlayer = new Player(data);
@@ -40,6 +54,7 @@ class Player {
         this.position = obj.position
         this.espnPage = obj.espn_page
         this.team = obj.team
+        this.userId = obj.user.id
     }
 }
 
@@ -52,10 +67,17 @@ Player.prototype.teamName = function() {
 }
 
 Player.prototype.postHtml = function() {
+    let teamLink = `<a href="/users/${this.userId}">`
+    
+    if (this.userId === 7) {
+        teamLink = `<a href="/free-agents">`
+    }
+    
     return `
-            <h2 style="display:inline">${this.fullName()}</h2>
-            <p>Position: ${this.position}</p>
-            <p>${this.teamName()}</p>
-            <a href="${this.espnPage}" target="_blank">ESPN Player Page</a>
+        <h2>${this.fullName()}</h2>
+        <p>Position: ${this.position}</p>
+        <p>${teamLink} ${this.teamName()}</a></p>
+        <p><a href="${this.espnPage}" target="_blank">ESPN Player Page</a></p>
+ 
     `
 }
