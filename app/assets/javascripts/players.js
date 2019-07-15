@@ -3,17 +3,16 @@ $(() => {
 })
 
 // const nextPlayer = () => {
-//     $("#js-next-player").on("click", e => {
+//     $("#js-next-player").on("click", function(e) {
 //         e.preventDefault();
 //         let nextId = parseInt($("#js-next-player").attr("data-id")) + 1;
-//         // let nextId = $(this).data("id") + 1; -- doesn't work
+//         // let nextId = $(this).data("id") + 1;
 //         history.pushState(null, null, nextId)
 //         $.get("/players/" + nextId + ".json", data => {
-//             let player = data;
-//             $("#player-name-position").html(player["full_name"] + " - " + player["position"]);
-//             $("#player-team").html(`<a href="/users/${player["user"]["id"]}">${player["team"]["full_name"]}</a>`);
-//             $("#player-espn").html(`<a href="${player["espn_page"]}" target="_blank">ESPN Player Page</a>`);
-//             $("#js-next-player").attr("data-id", player["id"]);
+//             let clickedPlayer = new Player(data);
+//             let postPlayer = clickedPlayer.postHtml();
+//             $("#player-page").html(postPlayer);
+//             $("#js-next-player").attr("data-id", clickedPlayer.id);
 //         });
 //     });
 // };
@@ -21,14 +20,14 @@ $(() => {
 const nextPlayer = () => {
     $("#js-next-player").on("click", function(e) {
         e.preventDefault();
-        let nextId = parseInt($("#js-next-player").attr("data-id")) + 1;
-        // let nextId = $(this).data("id") + 1;
-        history.pushState(null, null, nextId)
-        $.get("/players/" + nextId + ".json", data => {
+        let thisId = parseInt($("#js-next-player").attr("data-id"));
+        // let thisId = $(this).data("id");
+        $.get("/players/" + thisId + "/next.json", data => {
             let clickedPlayer = new Player(data);
             let postPlayer = clickedPlayer.postHtml();
             $("#player-page").html(postPlayer);
             $("#js-next-player").attr("data-id", clickedPlayer.id);
+            history.pushState(null, null, clickedPlayer.id)
         });
     });
 };
@@ -72,7 +71,7 @@ Player.prototype.postHtml = function() {
     if (this.userId === 7) {
         teamLink = `<a href="/free-agents">`
     }
-    
+
     return `
         <h2>${this.fullName()}</h2>
         <p>Position: ${this.position}</p>

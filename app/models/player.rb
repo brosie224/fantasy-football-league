@@ -23,4 +23,10 @@ class Player < ApplicationRecord
         self.position != "DT"
     end
 
+    def next
+        player = Player.where("id > ?", self.id).first
+
+        player ? player : Player.first
+    end
+
 end

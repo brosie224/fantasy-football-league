@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :players, only: [:new, :edit]
   end
 
+  get '/players/:id/next' => 'players#next'
   get '/free-agents' => 'players#free_agents'
   post '/add-players' => 'players#add_to_team'
 
