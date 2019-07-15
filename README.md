@@ -1,7 +1,7 @@
 # Portfolio Project - Rails and JavaScript - Fantasy Football
 
 ## Description
-
+This application allows users to track teams and players for their fantasy football league.
 
 ## Installation
 To install the application, follow the below instructions:
