@@ -19,6 +19,10 @@ class Player < ApplicationRecord
         "http://www.espn.com/nfl/player/_/id/#{self.espn_id}"
     end
 
+    def headshot
+        "https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/#{self.espn_id}.png"
+    end
+
     def not_defense
         self.position != "DT"
     end

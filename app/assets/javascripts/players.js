@@ -53,6 +53,7 @@ class Player {
         this.lastName = obj.last_name
         this.position = obj.position
         this.espnPage = obj.espn_page
+        this.headshot = obj.headshot
         this.team = obj.team
         this.userId = obj.user.id
     }
@@ -74,6 +75,7 @@ Player.prototype.postHtml = function() {
     }
 
     return `
+        <img src="${this.headshot}" width="175" height="127" display="inline-block">
         <h2>${this.fullName()}</h2>
         <p>Position: ${this.position}</p>
         <p>${teamLink} ${this.teamName()}</a></p>
