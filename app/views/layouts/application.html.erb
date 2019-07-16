@@ -12,14 +12,14 @@
   <body>
         <nav>
         <% if current_user %>
-          <%= link_to "My Page", user_path(current_user) %>&nbsp
-          <%= link_to "Teams", teams_path %>&nbsp
-          <%= link_to "Free Agents", free_agents_path %>&nbsp
-          <%= link_to "All Players", players_path %>&nbsp
-          <%= link_to "All Users", users_path, id: "view-users" %>&nbsp
+          <%= link_to "My Page", user_path(current_user) %> |
+          <%= link_to "Teams", teams_path %> |
+          <%= link_to "Free Agents", free_agents_path %> |
+          <%= link_to "All Players", players_path %> |
+          <%= link_to "All Users", users_path, id: "view-users" %> |
           <%= link_to "Log Out", logout_path %>
         <% else %>
-          <%= link_to "Sign Up", new_user_path %>&nbsp
+          <%= link_to "Sign Up", new_user_path %> |
           <%= link_to "Log In", login_path %>
         <% end %>
      </nav>

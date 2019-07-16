@@ -6,12 +6,11 @@ const prevPlayer = () => {
     $("#js-prev-player").on("click", e => {
         e.preventDefault();
         let id = parseInt($("#js-prev-player").attr("data-id"));
-        // let id = $(this).data("id");
         $.get("/players/" + id + "/previous.json", data => {
             let clickedPlayer = new Player(data);
             let postPlayer = clickedPlayer.postHtml();
             $("#player-page").html(postPlayer);
-            $("#js-prev-player").attr("data-id", clickedPlayer.id);$("#js-prev-player").attr("data-id", clickedPlayer.id);
+            $("#js-prev-player").attr("data-id", clickedPlayer.id);
             $("#js-next-player").attr("data-id", clickedPlayer.id);
             history.pushState(null, null, clickedPlayer.id)
         });
