@@ -74,8 +74,14 @@ Player.prototype.postHtml = function() {
         teamLink = `<a href="/free-agents">`
     }
 
+    let headshot = `<img src="${this.headshot}" width="175" height="127"></img>`
+
+    if (this.position === "DT") {
+        headshot = ``
+    } 
+
     return `
-        <img src="${this.headshot}" width="175" height="127" display="inline-block">
+        ${headshot}
         <h2>${this.fullName()}</h2>
         <p>Position: ${this.position}</p>
         <p>${teamLink} ${this.teamName()}</a></p>

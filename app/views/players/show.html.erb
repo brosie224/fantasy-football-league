@@ -1,4 +1,5 @@
 <div id="player-page">
+    <img src="<%= @player.headshot %>" width="175" height="127">
     <h2><%= @player.full_name %></h2>
     <p>Position: <%= @player.position %></p>
     <p><%= link_to @player.team.full_name, user_path(@player.user) %></p>
