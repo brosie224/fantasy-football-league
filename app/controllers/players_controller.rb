@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
     before_action :find_team, only: [:free_agents, :add_to_team]
     before_action :admin_only, except: [:index, :free_agents, :add_to_team, :show, :previous, :next]
 
-    def index
+    def index # list only players who have a TLFL team
       @players = Player.all.order(:last_name, :first_name).sort_position
       respond_to do |f|
         f.html
@@ -48,6 +48,12 @@ class PlayersController < ApplicationController
     
     def new
         @player = Player.new
+    end
+
+    def create_from_fd
+      fds = FdService.new
+      fds.create_new_players
+      redirect_to players_path
     end
 
     def create

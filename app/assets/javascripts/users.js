@@ -6,7 +6,7 @@ const viewUsers = () => {
     $("#view-users").on("click", e => {
         e.preventDefault();
         $.get("/users.json", users => {
-            history.pushState(null, null, "users")
+            history.pushState(null, null, "/users")
             $("#page-content-container").html(`<h1>All Users</h1>`)
             users.forEach(user => {
                 let newUser = new User(user)

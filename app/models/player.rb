@@ -2,6 +2,8 @@ class Player < ApplicationRecord
     belongs_to :team
     has_one :user, through: :team
     
+    # attr_accessor :pass_yards
+
     validates_uniqueness_of :espn_id, if: :not_defense
 
     scope :free_agents, -> { where(team_id: 0) }
@@ -20,7 +22,10 @@ class Player < ApplicationRecord
     end
 
     def headshot
-        "https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/#{self.espn_id}.png"
+        # ESPN:
+        # "https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/#{self.espn_id}.png"
+        # Fantasy Data:
+        "https://s3-us-west-2.amazonaws.com/static.fantasydata.com/headshots/nfl/low-res/#{self.espn_id}.png"
     end
 
     def not_defense
